@@ -1,34 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hamilton Map App</title>
-    <!-- StAuth10244: I Your Name, YourStudentID certify that this material is my original work. No other person's work has been used without due acknowledgement. I have not made my work available to anyone else. -->
-    <!-- Bootstrap CSS (via CDN) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hamilton Map App</title>
+  <!-- StAuth10244: I Your Name, YourStudentID certify that this material is my original work. No other person's work has been used without due acknowledgement. I have not made my work available to anyone else. -->
+  <!-- Bootstrap CSS (via CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navigation Bar (Optional) -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Hamilton Map App</a>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container my-3">
-        <!-- Map Container -->
-        <div id="map" style="width: 100%; height: 500px;"></div>
+  <!-- Navigation Bar (Optional) -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Hamilton Map App</a>
     </div>
+  </nav>
 
-    <!-- Bootstrap JS Bundle (includes Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Google Maps API (replace YOUR_API_KEY with your actual API key) -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMu6ukCRPm4fAPgydjOIRFXLVcbAeXYjU&callback=initMap" async defer></script>
-    <!-- Custom JavaScript -->
-    <script src="app.js"></script>
+  <!-- Main Content -->
+  <div class="container my-3">
+    <!-- Map Container -->
+    <div id="map" style="width: 100%; height: 500px;"></div>
+    
+    <!-- Filter Buttons -->
+    <div class="my-3">
+      <button id="filter-all" class="btn btn-primary">Show All</button>
+      <button id="filter-parks" class="btn btn-secondary">Parks</button>
+      <button id="filter-museums" class="btn btn-secondary">Museums</button>
+      <button id="filter-waterfalls" class="btn btn-secondary">Waterfalls</button>
+      <button id="filter-attractions" class="btn btn-secondary">Attractions</button>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Google Maps API (with your API key) -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMu6ukCRPm4fAPgydjOIRFXLVcbAeXYjU&callback=initMap" async defer></script>
+  <!-- Custom JavaScript -->
+  <script src="app.js"></script>
 </body>
 </html>
