@@ -2,6 +2,7 @@
 
 let map;
 let markers = [];
+let userMarker; // Global variable for the user's location marker
 
 function initMap() {
   // Center the map on Hamilton, ON
@@ -32,7 +33,7 @@ function loadInitialMarkers() {
     },
     { 
       name: "Gage Park", 
-      lat: 43.2325, 
+      lat: 43.2335, 
       lng: -79.8460, 
       address: "Gage Ave, Hamilton, ON", 
       description: "A historic park with beautiful gardens.", 
@@ -66,16 +67,16 @@ function loadInitialMarkers() {
     // Waterfalls
     { 
       name: "Webster's Falls", 
-      lat: 43.2330, 
-      lng: -79.9780, 
+      lat: 43.2333, 
+      lng: -79.9790, 
       address: "Falls Rd, Hamilton, ON", 
       description: "A stunning waterfall in the Hamilton area.", 
       category: "waterfalls" 
     },
     { 
       name: "Tew's Falls", 
-      lat: 43.2440, 
-      lng: -79.9700, 
+      lat: 43.2400, 
+      lng: -79.9760, 
       address: "Falls Rd, Hamilton, ON", 
       description: "Another beautiful waterfall in Hamilton.", 
       category: "waterfalls" 
@@ -147,6 +148,43 @@ function filterMarkers(category) {
   });
 }
 
+// Geolocation function to get and show the user's current location
+function showUserLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const userPos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        // Remove the previous user marker if it exists
+        if (userMarker) {
+          userMarker.setMap(null);
+        }
+        // Define a custom icon (ensure the image exists in your "images" folder)
+        const customIcon = {
+          url: "images/user-marker.png", // If you don't have a custom icon, you can remove this line
+          scaledSize: new google.maps.Size(30, 30)
+        };
+        // Create and add the user marker to the map
+        userMarker = new google.maps.Marker({
+          position: userPos,
+          map: map,
+          icon: customIcon,
+          title: "Your Location"
+        });
+        // Optionally, center the map on the user's location
+        map.setCenter(userPos);
+      },
+      (error) => {
+        alert("Error getting location: " + error.message);
+      }
+    );
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+
 // Attach event listeners after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("filter-all").addEventListener("click", () => {
@@ -169,4 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Filter Attractions clicked");
     filterMarkers("attractions");
   });
+  
+  // Attach event listener for the geolocation button
+  document.getElementById("btn-geolocate").addEventListener("click", showUserLocation);
 });
