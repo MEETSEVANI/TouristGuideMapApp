@@ -1,0 +1,33 @@
+style.css
+
+ body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+  }
+  #map {
+    width: 100%;
+    height: 500px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    /* Reduce map height for smaller screens */
+    #map {
+      height: 300px;
+    }
+    /* Center align text in the container */
+    .container {
+      text-align: center;
+    }
+  
+    /* Stack buttons vertically on small screens */
+    .btn {
+      margin-bottom: 10px;
+      width: 100%;
+    }
+    /* Adjust form layout */
+    #marker-form .form-control,
+    #marker-form .form-select {
+      width: 100%;
+    }
+  }
