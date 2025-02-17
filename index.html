@@ -7,62 +7,73 @@
   <!-- StAuth10244: I Your Name, YourStudentID certify that this material is my original work. No other person's work has been used without due acknowledgement. I have not made my work available to anyone else. -->
   <!-- Bootstrap CSS (via CDN) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Navigation Bar (Optional) -->
+  <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
+    <div class="container">
       <a class="navbar-brand" href="#">Hamilton Map App</a>
     </div>
   </nav>
 
   <!-- Main Content -->
   <div class="container my-3">
-    <!-- Map Container -->
-    <div id="map" style="width: 100%; height: 500px;"></div>
-    
-    <!-- Filter Buttons -->
-    <div class="my-3">
-      <button id="filter-all" class="btn btn-primary">Show All</button>
-      <button id="filter-parks" class="btn btn-primary">Parks</button>
-      <button id="filter-museums" class="btn btn-primary">Museums</button>
-      <button id="filter-waterfalls" class="btn btn-primary">Waterfalls</button>
-      <button id="filter-attractions" class="btn btn-primary">Attractions</button>
-      <button id="btn-geolocate" class="btn btn-success">Show My Location</button>
+
+    <!-- Map Container wrapped in a card -->
+    <div class="card mb-3 shadow-sm">
+      <div class="card-body p-0">
+        <div id="map" class="w-100" style="height: 500px;"></div>
+      </div>
     </div>
-    <!-- New Marker Form -->
-<div class="my-3">
-    <h5>Add a New Marker</h5>
-    <form id="marker-form">
-      <div class="mb-3">
-        <label for="markerName" class="form-label">Name:</label>
-        <input type="text" id="markerName" class="form-control" placeholder="Enter location name" required>
+
+    <!-- Filter Buttons (using flexbox for layout) -->
+    <div class="d-flex flex-wrap gap-2 mb-3">
+      <button id="filter-all" class="btn btn-primary flex-fill">Show All</button>
+      <button id="filter-parks" class="btn btn-secondary flex-fill">Parks</button>
+      <button id="filter-museums" class="btn btn-secondary flex-fill">Museums</button>
+      <button id="filter-waterfalls" class="btn btn-secondary flex-fill">Waterfalls</button>
+      <button id="filter-attractions" class="btn btn-secondary flex-fill">Attractions</button>
+    </div>
+
+    <!-- Geolocation Button -->
+    <div class="mb-3">
+      <button id="btn-geolocate" class="btn btn-success w-100">Show My Location</button>
+    </div>
+
+    <!-- New Marker Form wrapped in a card -->
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Add a New Marker</h5>
+        <form id="marker-form">
+          <div class="mb-3">
+            <label for="markerName" class="form-label">Name:</label>
+            <input type="text" id="markerName" class="form-control" placeholder="Enter location name" required>
+          </div>
+          <div class="mb-3">
+            <label for="markerAddress" class="form-label">Address:</label>
+            <input type="text" id="markerAddress" class="form-control" placeholder="Enter address" required>
+          </div>
+          <div class="mb-3">
+            <label for="markerDescription" class="form-label">Description:</label>
+            <input type="text" id="markerDescription" class="form-control" placeholder="Enter a short description">
+          </div>
+          <div class="mb-3">
+            <label for="markerCategory" class="form-label">Category:</label>
+            <select id="markerCategory" class="form-select" required>
+              <option value="">Select a category</option>
+              <option value="parks">Parks</option>
+              <option value="museums">Museums</option>
+              <option value="waterfalls">Waterfalls</option>
+              <option value="attractions">Attractions</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Add Marker</button>
+        </form>
       </div>
-      <div class="mb-3">
-        <label for="markerAddress" class="form-label">Address:</label>
-        <input type="text" id="markerAddress" class="form-control" placeholder="Enter address" required>
-      </div>
-      <div class="mb-3">
-        <label for="markerDescription" class="form-label">Description:</label>
-        <input type="text" id="markerDescription" class="form-control" placeholder="Enter a short description">
-      </div>
-      <div class="mb-3">
-        <label for="markerCategory" class="form-label">Category:</label>
-        <select id="markerCategory" class="form-select" required>
-          <option value="">Select a category</option>
-          <option value="parks">Parks</option>
-          <option value="museums">Museums</option>
-          <option value="waterfalls">Waterfalls</option>
-          <option value="attractions">Attractions</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary">Add Marker</button>
-    </form>
+    </div>
+
   </div>
-  
-   
 
   <!-- Bootstrap JS Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
