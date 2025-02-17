@@ -2,7 +2,7 @@
 
 let map;
 let markers = [];
-let userMarker; // Global variable for the user's location marker
+let userMarker; 
 
 function initMap() {
   // Center the map on Hamilton, ON
@@ -12,7 +12,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: hamilton,
     zoom: 12,
-    mapId: 'f5da1a39c00f9de7'  // Your Map ID
+    mapId: 'f5da1a39c00f9de7'
   });
 
   // Load the initial markers on the map
@@ -25,24 +25,24 @@ function loadInitialMarkers() {
     // Parks
     { 
       name: "Bayfront Park", 
-      lat: 43.2560, 
-      lng: -79.8710, 
+      lat: 43.27178853013442, 
+      lng: -79.8723837, 
       address: "Bayfront Rd, Hamilton, ON", 
       description: "A scenic park by the waterfront.", 
       category: "parks" 
     },
     { 
       name: "Gage Park", 
-      lat: 43.2335, 
-      lng: -79.8460, 
+      lat: 43.248243235221615,
+      lng:  -79.82927017500252, 
       address: "Gage Ave, Hamilton, ON", 
       description: "A historic park with beautiful gardens.", 
       category: "parks" 
     },
     { 
       name: "Clarke Field", 
-      lat: 43.2750, 
-      lng: -79.8500, 
+      lat:43.26731975181228, 
+      lng:-79.84917566550568, 
       address: "Clarke St, Hamilton, ON", 
       description: "A popular park for sports and recreation.", 
       category: "parks" 
@@ -50,16 +50,16 @@ function loadInitialMarkers() {
     // Museums
     { 
       name: "Hamilton Museum of Steam & Technology", 
-      lat: 43.2570, 
-      lng: -79.8750, 
+      lat: 43.25650159106572, 
+      lng: -79.7716352294601 , 
       address: "Museum Ln, Hamilton, ON", 
       description: "Discover Hamilton's industrial heritage.", 
       category: "museums" 
     },
     { 
       name: "Canadian Warplane Heritage Museum", 
-      lat: 43.2500, 
-      lng: -79.8800, 
+      lat: 43.16003484119541,
+      lng:  -79.9249980871356, 
       address: "Warplane Rd, Hamilton, ON", 
       description: "A collection of historic aircraft.", 
       category: "museums" 
@@ -67,16 +67,16 @@ function loadInitialMarkers() {
     // Waterfalls
     { 
       name: "Webster's Falls", 
-      lat: 43.2333, 
-      lng: -79.9790, 
+      lat: 43.27640176703521,
+      lng:  -79.98066956218034, 
       address: "Falls Rd, Hamilton, ON", 
       description: "A stunning waterfall in the Hamilton area.", 
       category: "waterfalls" 
     },
     { 
       name: "Tew's Falls", 
-      lat: 43.2400, 
-      lng: -79.9760, 
+      lat: 43.28175205575606, 
+      lng: -79.97752315820075, 
       address: "Falls Rd, Hamilton, ON", 
       description: "Another beautiful waterfall in Hamilton.", 
       category: "waterfalls" 
@@ -84,24 +84,24 @@ function loadInitialMarkers() {
     // Attractions
     { 
       name: "Dundurn Castle", 
-      lat: 43.2530, 
-      lng: -79.8680, 
+      lat: 43.269659272680634, 
+      lng: -79.88425703131037, 
       address: "Castle Rd, Hamilton, ON", 
       description: "A historic neoclassical mansion.", 
       category: "attractions" 
     },
     { 
       name: "Escarpment Trail", 
-      lat: 43.2600, 
-      lng: -79.8600, 
+      lat:43.287904872677906, 
+      lng: -79.93619405676071, 
       address: "Trail Rd, Hamilton, ON", 
       description: "A scenic trail along the Niagara Escarpment.", 
       category: "attractions" 
     },
     { 
       name: "Hamilton Farmers' Market", 
-      lat: 43.2580, 
-      lng: -79.8760, 
+      lat: 43.25926201944987, 
+      lng: -79.87001105829586, 
       address: "Market St, Hamilton, ON", 
       description: "A bustling market featuring local produce.", 
       category: "attractions" 
@@ -162,9 +162,8 @@ function showUserLocation() {
         if (userMarker) {
           userMarker.setMap(null);
         }
-        // Define a custom icon (ensure the image exists in your "images" folder)
         const customIcon = {
-          url: "images/user-marker.png", // If you don't have a custom icon, you can remove this line
+          url: "images/Unknown.png",
           scaledSize: new google.maps.Size(30, 30)
         };
         // Create and add the user marker to the map
@@ -174,7 +173,7 @@ function showUserLocation() {
           icon: customIcon,
           title: "Your Location"
         });
-        // Optionally, center the map on the user's location
+        // center the map on the user's location
         map.setCenter(userPos);
       },
       (error) => {
@@ -274,12 +273,11 @@ document.getElementById("marker-form").addEventListener("submit", function(event
 });
 // Function to get directions from the user's location to a destination
 function getDirections(destLat, destLng) {
-    if (userMarker) {
-      const userPos = userMarker.getPosition();
-      const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userPos.lat()},${userPos.lng()}&destination=${destLat},${destLng}`;
-      window.open(directionsUrl, '_blank');
-    } else {
-      alert("Please set your current location using the 'Show My Location' button first.");
-    }
+  if (userMarker) {
+    const userPos = userMarker.getPosition();
+    const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userPos.lat()},${userPos.lng()}&destination=${destLat},${destLng}`;
+    window.open(directionsUrl, '_blank');
+  } else {
+    alert("Please set your current location using the 'Show My Location' button first.");
   }
-  
+}
