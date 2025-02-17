@@ -32,6 +32,36 @@
       <button id="filter-attractions" class="btn btn-primary">Attractions</button>
       <button id="btn-geolocate" class="btn btn-success">Show My Location</button>
     </div>
+    <!-- New Marker Form -->
+<div class="my-3">
+    <h5>Add a New Marker</h5>
+    <form id="marker-form">
+      <div class="mb-3">
+        <label for="markerName" class="form-label">Name:</label>
+        <input type="text" id="markerName" class="form-control" placeholder="Enter location name" required>
+      </div>
+      <div class="mb-3">
+        <label for="markerAddress" class="form-label">Address:</label>
+        <input type="text" id="markerAddress" class="form-control" placeholder="Enter address" required>
+      </div>
+      <div class="mb-3">
+        <label for="markerDescription" class="form-label">Description:</label>
+        <input type="text" id="markerDescription" class="form-control" placeholder="Enter a short description">
+      </div>
+      <div class="mb-3">
+        <label for="markerCategory" class="form-label">Category:</label>
+        <select id="markerCategory" class="form-select" required>
+          <option value="">Select a category</option>
+          <option value="parks">Parks</option>
+          <option value="museums">Museums</option>
+          <option value="waterfalls">Waterfalls</option>
+          <option value="attractions">Attractions</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Marker</button>
+    </form>
+  </div>
+  
    
 
   <!-- Bootstrap JS Bundle (includes Popper) -->
