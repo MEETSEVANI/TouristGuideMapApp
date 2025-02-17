@@ -251,10 +251,10 @@ document.getElementById("marker-form").addEventListener("submit", function(event
     // Assign the category to the marker for filtering purposes
     marker.category = category;
 
-    // Create an info window for the new marker
     const infowindow = new google.maps.InfoWindow({
-      content: `<strong>${name}</strong><br>${address}<br>${description}`
-    });
+        content: `<strong>${location.name}</strong><br>${location.address}<br>${location.description}<br>
+                  <a href="#" onclick="getDirections(${location.lat}, ${location.lng})">Get Directions</a>`
+      });
 
     // Add an event listener to open the info window when the marker is clicked
     marker.addListener("click", function() {
