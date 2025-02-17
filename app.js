@@ -211,3 +211,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Attach event listener for the geolocation button
   document.getElementById("btn-geolocate").addEventListener("click", showUserLocation);
 });
+
+// Function to geocode an address and return the location via callback
+function geocodeAddress(address, callback) {
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address: address }, (results, status) => {
+      if (status === "OK" && results[0]) {
+        callback(results[0].geometry.location);
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+  
