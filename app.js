@@ -124,9 +124,10 @@ function loadInitialMarkers() {
 
     // Create an info window for this marker
     const infowindow = new google.maps.InfoWindow({
-      content: `<strong>${location.name}</strong><br>${location.address}<br>${location.description}`
-    });
-
+        content: `<strong>${location.name}</strong><br>${location.address}<br>${location.description}<br>
+                  <a href="#" onclick="getDirections(${location.lat}, ${location.lng})">Get Directions</a>`
+      });
+      
     // Open the info window when the marker is clicked
     marker.addListener("click", () => {
       infowindow.open(map, marker);
@@ -225,50 +226,60 @@ function geocodeAddress(address, callback) {
   }
   // Event listener for the New Marker Form submission
 document.getElementById("marker-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
-  
-    // Get the values from the form inputs
-    const name = document.getElementById("markerName").value;
-    const address = document.getElementById("markerAddress").value;
-    const description = document.getElementById("markerDescription").value;
-    const category = document.getElementById("markerCategory").value;
-  
-    // Check if the address field is not empty (basic validation)
-    if (!address) {
-      alert("Please enter a valid address.");
-      return;
-    }
-  
-    // Use the geocodeAddress function to convert the address into coordinates
-    geocodeAddress(address, function(location) {
-      // Create a new marker at the geocoded location
-      const marker = new google.maps.Marker({
-        position: location,
-        map: map,
-        title: name
-      });
-  
-      // Assign the category to the marker for filtering purposes
-      marker.category = category;
-  
-      // Create an info window for the new marker
-      const infowindow = new google.maps.InfoWindow({
-        content: `<strong>${name}</strong><br>${address}<br>${description}`
-      });
-  
-      // Add an event listener to open the info window when the marker is clicked
-      marker.addListener("click", function() {
-        infowindow.open(map, marker);
-      });
-  
-      // Add the new marker to the global markers array
-      markers.push(marker);
-  
-      // Optionally, center the map on the new marker
-      map.setCenter(location);
-  
-      // Clear the form inputs after successfully adding the marker
-      document.getElementById("marker-form").reset();
+  event.preventDefault(); // Prevent the default form submission behavior
+
+  // Get the values from the form inputs
+  const name = document.getElementById("markerName").value;
+  const address = document.getElementById("markerAddress").value;
+  const description = document.getElementById("markerDescription").value;
+  const category = document.getElementById("markerCategory").value;
+
+  // Check if the address field is not empty (basic validation)
+  if (!address) {
+    alert("Please enter a valid address.");
+    return;
+  }
+
+  // Use the geocodeAddress function to convert the address into coordinates
+  geocodeAddress(address, function(location) {
+    // Create a new marker at the geocoded location
+    const marker = new google.maps.Marker({
+      position: location,
+      map: map,
+      title: name
     });
+
+    // Assign the category to the marker for filtering purposes
+    marker.category = category;
+
+    // Create an info window for the new marker
+    const infowindow = new google.maps.InfoWindow({
+      content: `<strong>${name}</strong><br>${address}<br>${description}`
+    });
+
+    // Add an event listener to open the info window when the marker is clicked
+    marker.addListener("click", function() {
+      infowindow.open(map, marker);
+    });
+
+    // Add the new marker to the global markers array
+    markers.push(marker);
+
+    // Optionally, center the map on the new marker
+    map.setCenter(location);
+
+    // Clear the form inputs after successfully adding the marker
+    document.getElementById("marker-form").reset();
   });
+});
+// Function to get directions from the user's location to a destination
+function getDirections(destLat, destLng) {
+    if (userMarker) {
+      const userPos = userMarker.getPosition();
+      const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userPos.lat()},${userPos.lng()}&destination=${destLat},${destLng}`;
+      window.open(directionsUrl, '_blank');
+    } else {
+      alert("Please set your current location using the 'Show My Location' button first.");
+    }
+  }
   
